@@ -44,7 +44,7 @@ const ContactPage = () => {
                             Get in Touch
                         </h1>
                         <p className="text-xl text-muted-foreground">
-                            Let's discuss your project or just have a chat
+                            Let{`'`}s discuss your project or just have a chat
                         </p>
                     </div>
 
