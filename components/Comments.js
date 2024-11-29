@@ -74,17 +74,17 @@ export default function Comments({ blogId, comments, currentUser }) {
 
       <div className="space-y-4">
       {localComments.map((comment, index) => (
-  <div key={index} className="group p-6 border-b border-gray-800 rounded-none hover:border-gray-700 transition-colors">
+  <div key={index} className="group p-6 border-b rounded-none hover:bg-accent transition-colors">
     <div className="flex items-center justify-between mb-3">
       <div className="flex items-center gap-3">
-        <div className="h-8 w-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center">
-          <span className="text-sm font-medium text-gray-200">
+        <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
+          <span className="text-sm font-medium">
             {comment.author?.username?.charAt(0).toUpperCase()}
           </span>
         </div>
         <div>
-          <span className="font-medium text-gray-200">{comment.author?.username}</span>
-          <p className="text-xs text-gray-500">
+          <span className="font-medium">{comment.author?.username}</span>
+          <p className="text-xs text-muted-foreground">
             {new Date(comment.createdAt).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'short',
@@ -95,10 +95,11 @@ export default function Comments({ blogId, comments, currentUser }) {
       </div>
     </div>
     <div className="pl-11 -mt-3">
-      <p className="text-gray-300 text-sm leading-relaxed">{comment.content}</p>
+      <p className="text-sm leading-relaxed">{comment.content}</p>
     </div>
   </div>
 ))}
+
 
 
 
