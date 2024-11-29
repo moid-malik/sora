@@ -40,7 +40,6 @@ const Navbar = () => {
 
   useEffect(() => {
     const cookies = document.cookie.split(';');
-    console.log(document.cookie)
     const userCookie = cookies.find(cookie => cookie.trim().startsWith('user='));
     setIsLoggedIn(!!userCookie);
   }, []);

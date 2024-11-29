@@ -86,7 +86,7 @@ function Blog() {
 {filteredBlogs.map((blog) => (
   <article key={blog._id} className="border rounded-lg p-6 hover:shadow-lg transition">
     <div className="flex flex-col md:flex-row gap-6">
-      <div className="relative w-full md:w-48 h-48">
+      <div className="relative min-w-48 md:w-48 h-48">
         <Image
           src={blog.image}
           alt={blog.title}
