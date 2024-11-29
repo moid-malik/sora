@@ -16,6 +16,8 @@ function Blog() {
     const userCookie = cookies.find(cookie => cookie.trim().startsWith('user='));
     if (!userCookie) {
       setUser(false)
+      setIsLoading(false)
+      return
     }
     if (userCookie) {
       const userData = userCookie.split('=')[1];
@@ -40,6 +42,27 @@ function Blog() {
     fetchBlogs()
   }, [])
 
+  if (isLoading) {
+    return <div className="container mx-auto py-12 px-4 text-center">Loading blogs...</div>
+  }
+
+  if (!user) {
+    return (
+      <div className="container mx-auto py-12 px-4 text-center">
+        <h1 className="text-3xl font-bold mb-6">Please Login to View Blogs</h1>
+        <p className="mb-8 text-muted-foreground">You need to be logged in to access the blog content.</p>
+        <div className="space-x-4">
+          <Link href="/login" className={buttonVariants({ variant: "default" })}>
+            Login
+          </Link>
+          <Link href="/register" className={buttonVariants({ variant: "outline" })}>
+            Register
+          </Link>
+        </div>
+      </div>
+    )
+  }
+
   const filteredBlogs = Array.isArray(blogs) ? (
     searchTerm.trim() === '' 
       ? blogs 
@@ -49,9 +72,6 @@ function Blog() {
         )
   ) : [];
 
-  if (isLoading) {
-    return <div className="container mx-auto py-12 px-4 text-center">Loading blogs...</div>
-  } 
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="max-w-4xl mx-auto space-y-8">
