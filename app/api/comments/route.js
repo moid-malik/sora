@@ -7,10 +7,8 @@ export async function POST(request) {
   const { blogId, content, userId } = await request.json();
 
   try {
-    // First find the blogpost and populate existing comments
     const blogpost = await Blogpost.findById(blogId).populate('comments.author');
     
-    // Add the new comment
     const newComment = {
       content,
       author: userId,

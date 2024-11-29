@@ -62,7 +62,6 @@ export default function Profile() {
   return (
     <div className="container mx-auto py-12 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* User Profile Section */}
         <div className="mb-12 bg-card rounded-lg p-8 shadow-sm">
           <div className="flex flex-col md:flex-row items-center gap-6">
             <div className="bg-muted rounded-full p-8">
@@ -77,7 +76,6 @@ export default function Profile() {
           </div>
         </div>
 
-        {/* Blog Management Section */}
         <div className="space-y-6">
           <div className="flex justify-between items-center">
             <h2 className="text-2xl font-bold">Your Blogs</h2>

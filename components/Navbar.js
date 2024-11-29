@@ -20,43 +20,36 @@ const Navbar = () => {
   const [progress, setProgress] = useState(0);
   const pathname = usePathname();
 
-  useEffect(() => {
-    setProgress(20);
-
-    setTimeout(() => {
-      setProgress(40);
-    }, 100);
-
-    setTimeout(() => {
-      setProgress(100);
-    }, 400);
-  }, [pathname]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setProgress(0);
-    }, 50);
-  }, []);
-
-  useEffect(() => {
+  const checkLoginStatus = () => {
     const cookies = document.cookie.split(';');
     const userCookie = cookies.find(cookie => cookie.trim().startsWith('user='));
-    setIsLoggedIn(!!userCookie);
+    const localStorageUser = localStorage.getItem('user');
+    setIsLoggedIn(!!userCookie || !!localStorageUser);
+  };
+
+  useEffect(() => {
+    checkLoginStatus();
+
+    const intervalId = setInterval(checkLoginStatus, 1000);
+
+    return () => clearInterval(intervalId);
   }, []);
+
   const handleLogout = async () => {
     try {
       const response = await fetch('/api/auth/logout', {
         method: 'GET'
-      })
+      });
   
       if (response.ok) {
-        localStorage.removeItem('user')
-        window.location.href = '/'
+        localStorage.removeItem('user');
+        setIsLoggedIn(false);
+        window.location.href = '/';
       }
     } catch (error) {
-      console.error('Logout failed:', error)
+      console.error('Logout failed:', error);
     }
-  }
+  };
   return (
     <nav className="p-4 bg-background/50 sticky top-0 backdrop-blur border-b z-10">
       <LoadingBar
