@@ -62,8 +62,8 @@ export default async function Page({ params }) {
     return (
         user ? (
             <div className="max-w-6xl mx-auto p-4">
-                <h1  className="text-4xl font-bold mb-4 max-w-[46vw]">{blogpost.title}</h1>
-                <p className="text-base mb-2 border-l-4 max-w-[45vw] border-gray-500 pl-4 italic">&quot;{blogpost.description}&quot;</p>
+                <h1  className="text-4xl font-bold mb-4 lg:max-w-[46vw]">{blogpost.title}</h1>
+                <p className="text-base mb-2 border-l-4 lg:max-w-[45vw] border-gray-500 pl-4 italic">&quot;{blogpost.description}&quot;</p>
                 <div className="flex gap-2">
                     <p className="text-sm text-gray-500 mb-4 italic">By {blogpost.author}</p>
                     <p className="text-sm text-gray-500 mb-4">{new Date(blogpost.date).toLocaleDateString()}</p>
