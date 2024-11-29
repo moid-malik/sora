@@ -99,8 +99,12 @@ function Blog() {
         <div className="text-sm text-muted-foreground">
           {new Date(blog.date).toLocaleDateString()} • {blog.author}
         </div>
-        <h2 className="text-2xl font-bold">{blog.title}</h2>
-        <p className="text-muted-foreground">{blog.description}</p>
+        <h2 className="text-2xl font-bold">
+          {blog.title.length > 94 ? `${blog.title.substring(0, 94)}...` : blog.title}
+        </h2>
+        <p className="text-muted-foreground">
+          {blog.description.length > 130 ? `${blog.description.substring(0, 130)}...` : blog.description}
+        </p>
         <Link href={`/blogpost/${blog.slug}`} className={buttonVariants({ variant: "link" })}>
           Read more →
         </Link>
@@ -108,6 +112,7 @@ function Blog() {
     </div>
   </article>
 ))}
+
       </div>
     </div>
   )
