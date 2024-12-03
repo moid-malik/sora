@@ -17,6 +17,7 @@ import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [open, setOpen] = useState(false);
   const [progress, setProgress] = useState(0);
   const pathname = usePathname();
 
@@ -111,60 +112,67 @@ const Navbar = () => {
           <span className="mx-2">
             <ModeToggle />
           </span>
-          <Sheet>
-            <SheetTrigger>
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
-              </svg>
-            </SheetTrigger>
-            <SheetContent>
-              <SheetHeader>
-                <SheetTitle className="font-bold my-4">Sora</SheetTitle>
-                <SheetDescription>
-                  <div className="flex flex-col gap-6">
-                    <Link href="/">Home</Link>
-                    <Link href="/about">Portfolio</Link>
-                    <Link href="/blog">Blog</Link>
-                    <Link href="/profile">Profile</Link>
-                    <Link href="/contact">Contact</Link>
-                    <div>
-                      {isLoggedIn ? (
-                        <div className="flex flex-col gap-3 max-w-36 mx-auto">
-                        <Link href="/uploadblog">
-                          <Button className="mx-1" variant="outline">
-                            Upload a Blog
-                          </Button>
-                        </Link>
-                          <Button onClick={handleLogout} className="mx-1" variant="destructive">
-                            Logout
-                          </Button>
-                        </div>
-                      ) : (
-                        <>
-                          <Link href="/login">
-                            <Button className="mx-1" variant="outline">
-                              Login
-                            </Button>
-                          </Link>
-                          <Link href="/register">
-                            <Button className="mx-1" variant="outline">
-                              Signup
-                            </Button>
-                          </Link>
-                        </>
-                      )}
-                    </div>
-                  </div>
-                </SheetDescription>
-              </SheetHeader>
-            </SheetContent>
-          </Sheet>
+          <Sheet open={open} onOpenChange={setOpen}>
+  <SheetTrigger onClick={() => setOpen(true)}>
+    <svg
+      className="w-6 h-6"
+      fill="none"
+      stroke="currentColor"
+      viewBox="0 0 24 24"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+    </svg>
+  </SheetTrigger>
+  <SheetContent>
+    <SheetHeader>
+      <SheetTitle className="font-bold my-4">Sora</SheetTitle>
+      <SheetDescription>
+        <div className="flex flex-col gap-6">
+          <Link href="/" onClick={() => setOpen(false)}>Home</Link>
+          <Link href="/about" onClick={() => setOpen(false)}>Portfolio</Link>
+          <Link href="/blog" onClick={() => setOpen(false)}>Blog</Link>
+          <Link href="/profile" onClick={() => setOpen(false)}>Profile</Link>
+          <Link href="/contact" onClick={() => setOpen(false)}>Contact</Link>
+          <div>
+            {isLoggedIn ? (
+              <div className="flex flex-col gap-3 max-w-36 mx-auto">
+                <Link href="/uploadblog" onClick={() => setOpen(false)}>
+                  <Button className="mx-1" variant="outline">
+                    Upload a Blog
+                  </Button>
+                </Link>
+                <Button 
+                  onClick={() => {
+                    setOpen(false);
+                    handleLogout();
+                  }} 
+                  className="mx-1" 
+                  variant="destructive"
+                >
+                  Logout
+                </Button>
+              </div>
+            ) : (
+              <>
+                <Link href="/login" onClick={() => setOpen(false)}>
+                  <Button className="mx-1" variant="outline">
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/register" onClick={() => setOpen(false)}>
+                  <Button className="mx-1" variant="outline">
+                    Signup
+                  </Button>
+                </Link>
+              </>
+            )}
+          </div>
+        </div>
+      </SheetDescription>
+    </SheetHeader>
+  </SheetContent>
+</Sheet>
         </div>
       </div>
     </nav>

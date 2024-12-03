@@ -73,46 +73,47 @@ function Blog() {
   ) : [];
 
   return (
-    <div className="container mx-auto py-12 px-4">
-      <div className="max-w-4xl mx-auto space-y-8">
-        <Input
-          type="search"
-          placeholder="Search blogs..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="max-w-md mx-auto"
-        />
+    <div className="min-h-screen w-full">
+      <div className="container mx-auto py-8 sm:py-12 px-4">
+        <div className="max-w-4xl mx-auto space-y-6 sm:space-y-8">
+          <Input
+            type="search"
+            placeholder="Search blogs..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="max-w-md mx-auto"
+          />
 
-{filteredBlogs.map((blog) => (
-  <article key={blog._id} className="border rounded-lg p-6 hover:shadow-lg transition">
-    <div className="flex flex-col md:flex-row gap-6">
-      <div className="relative min-w-48 md:w-48 h-48">
-        <Image
-          src={blog.image}
-          alt={blog.title}
-          fill
-          className="object-cover rounded-md"
-        />
-      </div>
-      
-      <div className="space-y-4">
-        <div className="text-sm text-muted-foreground">
-          {new Date(blog.date).toLocaleDateString()} • {blog.author}
+          {filteredBlogs.map((blog) => (
+            <article key={blog._id} className="border rounded-lg p-4 sm:p-6 hover:shadow-lg transition">
+              <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
+                <div className="relative w-full md:w-48 h-48 shrink-0">
+                  <Image
+                    src={blog.image}
+                    alt={blog.title}
+                    fill
+                    className="object-cover rounded-md"
+                  />
+                </div>
+                
+                <div className="space-y-3 sm:space-y-4">
+                  <div className="text-sm text-muted-foreground">
+                    {new Date(blog.date).toLocaleDateString()} • {blog.author}
+                  </div>
+                  <h2 className="text-xl sm:text-2xl font-bold break-words">
+                    {blog.title.length > 94 ? `${blog.title.substring(0, 94)}...` : blog.title}
+                  </h2>
+                  <p className="text-muted-foreground break-words">
+                    {blog.description.length > 130 ? `${blog.description.substring(0, 130)}...` : blog.description}
+                  </p>
+                  <Link href={`/blogpost/${blog.slug}`} className={buttonVariants({ variant: "link" })}>
+                    Read more →
+                  </Link>
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
-        <h2 className="text-2xl font-bold">
-          {blog.title.length > 94 ? `${blog.title.substring(0, 94)}...` : blog.title}
-        </h2>
-        <p className="text-muted-foreground">
-          {blog.description.length > 130 ? `${blog.description.substring(0, 130)}...` : blog.description}
-        </p>
-        <Link href={`/blogpost/${blog.slug}`} className={buttonVariants({ variant: "link" })}>
-          Read more →
-        </Link>
-      </div>
-    </div>
-  </article>
-))}
-
       </div>
     </div>
   )
