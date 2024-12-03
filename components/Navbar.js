@@ -137,7 +137,7 @@ const Navbar = () => {
           <div>
             {isLoggedIn ? (
               <div className="flex flex-col gap-3 max-w-36 mx-auto">
-                <Link href="/uploadblog" onClick={() => setOpen(false)}>
+                <Link href="/profile/create-blog" onClick={() => setOpen(false)}>
                   <Button className="mx-1" variant="outline">
                     Upload a Blog
                   </Button>
