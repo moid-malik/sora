@@ -28,12 +28,12 @@ function Hero() {
           From personal journeys to practical tips <br className="hidden lg:block" /> read, learn, and grow.
           </p>
           <div className="mt-6 bg-transparent border rounded-lg dark:border-gray-700 lg:w-2/3 focus-within:border-primary focus-within:ring focus-within:ring-primary dark:focus-within:border-primary focus-within:ring-opacity-20">
-            <div action="https://www.creative-tim.com/twcomponents/search" className="flex flex-wrap justify-between md:flex-row">
+            <div className="flex flex-wrap justify-between md:flex-row">
             </div>
           </div>
         </div>
         <div className="w-full mt-4 lg:mt-0 lg:w-1/2">
-          <img src="https://www.creative-tim.com/twcomponents/svg/website-designer-bro-purple.svg" alt="tailwind css components" className="w-full h-full max-w-md mx-auto" />
+          <img src="/sd.svg" alt="tailwind css components" className="w-full h-full max-w-md mx-auto" />
         </div>
       </section>
   )
