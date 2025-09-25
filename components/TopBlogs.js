@@ -8,7 +8,7 @@ async function TopBlogs() {
   await dbConnect();
   const blogs = await Blogpost.find({})
     .sort({ createdAt: -1 })
-    .limit(3)
+    .limit(2)
     .lean();
 
   return (
